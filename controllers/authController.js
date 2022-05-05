@@ -45,7 +45,7 @@ const register = async (req, res) => {
     name: user.name,
     email: user.email,
     verificationToken: user.verificationToken,
-    origin,
+    origin = 'http://localhost:4200/auth',
   });
   // send verification token back only while testing in postman!!!
   res.status(StatusCodes.CREATED).json({
@@ -146,7 +146,7 @@ const forgotPassword = async (req, res) => {
   if (user) {
     const passwordToken = crypto.randomBytes(70).toString("hex");
     // send email
-    const origin = "http://localhost:3000";
+    const origin = 'http://localhost:4200/auth';
     await sendResetPasswordEmail({
       name: user.name,
       email: user.email,
